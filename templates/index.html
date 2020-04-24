@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>亚马逊手机榜</title>
+    </head>
+    <style>
+            body{text-align: center;} 
+    </style>
+    <body>
+        <h1>{{message}}</h1>
+        <h1>欢迎来到亚马逊手机榜！请登录</h1>
+
+        <form id="login" action="{{ url_for('login') }}" method="post">
+
+            用户名 <input type="text" name="username"><br>
+             密码  <input type="password" name="password"><br><br>
+            <input type="submit" value="提交">
+        </form><br>
+
+
+        <form action="{{ url_for('register') }}" method="post">
+            <input type="submit" value="注册">
+        </form>
+
+    </body>
+</html>

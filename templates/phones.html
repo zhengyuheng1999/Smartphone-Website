@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            查询结果
+        </title>
+        <style>
+            body{text-align: center;} 
+            table {
+                margin: auto;
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            th {
+                background-color: lightgray;
+            }
+    </style>
+    </head>
+    <body>
+        <h1>查询结果如下</h1>
+            <table>
+            <tr>
+            <th>asin</th>
+            <th>品牌</th>
+            <th>型号</th>
+            <th>此机链接</th>
+            <th>图片</th>
+            <th>评分</th>
+            <th>评价数量</th>
+            <th>价格</th>
+            </tr>
+            {% for phone in phones %}
+                    <tr id="post">
+                        <td>{{phone.asin}}</td>
+                        <td>{{phone.brand}}</td>
+                        <td>{{phone.title}}</td>
+                        <td><a href="{{url_for('phone',asin=phone.asin)}}">点此进入</a></td>
+                        <td><img src={{phone.image}}></td>
+                        <td>{{phone.rating}}</td>
+                        <td>{{phone.totalReviews}}</td>
+                        <td>{{phone.prices}}</td>
+                    </tr>
+            {%endfor%}
+            </table><br>
+        <form action="{{ url_for('logout') }}" method="post">
+            <input type="submit" value="退出登录">
+        </form>
+    </body>
+</html>

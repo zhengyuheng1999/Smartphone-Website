@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>注册</title>
+        <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+
+        // By default, submit button is disabled
+        document.querySelector('#submit').disabled = true;
+
+        // Enable button only if there is text in the input field
+        document.querySelector('#username').onkeyup = () => {
+        if (document.querySelector('#username').value.length > 0)
+        document.querySelector('#password').onkeyup = () => {
+        if (document.querySelector('#password').value.length > 0 && document.querySelector('#username').value.length > 0)
+            document.querySelector('#submit').disabled = false;
+        else
+            document.querySelector('#submit').disabled = true;
+
+    };
+        else
+            document.querySelector('#submit').disabled = true;
+};
+
+});
+        </script>
+    </head>
+    <style>
+        body{text-align: center;} 
+    </style>
+    <body>
+        <h1>注册界面</h1>
+        <form action="{{ url_for('store') }}" method="post">
+
+            用户名 <input id="username" type="text" name="username"><br>
+            密码 <input id="password" type="password" name="password"><br><br>
+           <input id="submit" type="submit" value="提交">
+    
+        </form>
+    </body>
+</html>

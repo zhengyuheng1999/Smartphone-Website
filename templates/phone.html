@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{isbn}}
+        </title>
+        <style>
+            body{text-align: center;} 
+            table {
+                margin: auto;
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            th {
+                background-color: lightgray;
+            }
+    </style>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+                
+            document.querySelector('#comment').onsubmit = () => {
+                alert('评论成功');
+            };
+
+            document.querySelector('#submit').disabled = true;
+            
+            document.querySelector('#text').onkeyup = () => {
+            if (document.querySelector('#text').value.length > 0)
+            document.querySelector('#submit').disabled = false;
+            else
+            document.querySelector('#submit').disabled = true;
+            };
+        });
+    </script>
+    </head>
+    <body>
+        <h1>此机信息如下</h1>
+        <table>
+            <tr>
+            <th>asin</th>
+            <th>品牌</th>
+            <th>型号</th>
+            <th>图片</th>
+            <th>评分</th>
+            <th>评价数量</th>
+            <th>价格</th>
+            <th>购买链接</th>
+            </tr>
+            <tr>
+            <td>{{phone.asin}}</td>
+            <td>{{phone.brand}}</td>
+            <td>{{phone.title}}</td>
+            <td><img src={{phone.image}}></td>
+            <td>{{phone.rating}}</td>
+            <td>{{phone.totalReviews}}</td>
+            <td>{{phone.prices}}</td>
+            <td><a href={{phone.url}}>点此购买</td>
+            </tr>
+        </table><br>
+            {% if remarks :%}
+               <table>
+                <tr>
+                    <th>用户</th>
+                    <th>评分</th>
+                    <th>短评</th>
+                </tr>
+                {% for remark in remarks %}
+                <tr>
+                <td>{{remark.username}}</td> 
+                <td>{{remark.mark}}</td>
+                <td>{{remark.text}}</td>
+                </tr>
+                {%endfor%}
+               </table><br>
+            {% else: %}
+            No reviews.<br>
+            {% endif %}
+            {% if counter <1: %}
+            <form id="comment" action="{{ url_for('comment',asin=phone.asin) }}" method="post">
+                <div class="form-group"> 
+                评分<select id="mark" class="form-control" name="mark">
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                   </select>
+                 </div>
+                评语 <input id="text" type="text" name="text"><br>
+                <br><input id="submit" type="submit" value="提交" >
+            </form>
+            {% endif %}<br>
+            <form action="{{ url_for('logout') }}" method="post">
+                <input type="submit" value="退出登录">
+            </form>
+    </body>
+</html>

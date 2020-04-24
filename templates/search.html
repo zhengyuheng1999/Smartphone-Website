@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>亚马逊手机榜</title>
+    </head>
+    <style>
+        body{text-align: center;} 
+        table {
+                margin: auto;
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            th {
+                background-color: lightgray;
+            }
+    </style>
+    <body>
+        <h1>搜索引擎</h1>
+        <form action="{{ url_for('search') }}" method="post">
+            <table>
+             <tr>
+            <th>ASIN</th>
+            <th>品牌</th>
+            <th>型号</th>
+            <th>价格</th>
+            <th>排序</th>
+            </tr>
+            <tr>
+            <td><input type="text" name="asin"></td>
+            <td>
+                <select class="form-control" name="brand">
+                    <option value ="">全部品牌</option>
+                    <option value ="Nokia">Nokia</option>
+                    <option value ="Motorola">Motorola</option>
+                    <option value ="Sony">Sony</option>
+                    <option value ="Samsung">Samsung</option>
+                    <option value ="HUAWEI">HUAWEI</option>
+                    <option value ="Apple">Apple</option>
+                    <option value ="OnePlus">OnePlus</option>
+                    <option value ="Google">Google</option>
+                    <option value ="ASUS">ASUS</option>
+                    <option value ="Xiaomi">Xiaomi</option>
+                </select>
+            </td>
+            <td><input type="text" name="title"></td>
+            <td>
+                <select class="form-control" name="grade">
+                    <option value ="">全部价位</option>
+                    <option value ="A">>=400</option>
+                    <option value ="B">200-399</option>
+                    <option value ="C">1-199</option>
+                </select>
+            </td>
+            <td>
+                <select class="form-control" name="order">
+                    <option value ="A">无序</option>
+                    <option value ="B">评分由高到低</option>
+                    <option value ="C">价钱由高到低</option>
+                    <option value ="D">价钱由低到高</option>
+                </select>
+            </td>
+            </tr>
+            </table><br>
+            <input type="submit" value="查询"><br>
+        </form><br>
+
+        <form id="logout" action="{{ url_for('logout') }}" method="post">
+            <input type="submit" value="退出登录">
+        </form>
+
+    </body>
+</html>
