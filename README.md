@@ -3,5 +3,7 @@
 
 用import.py将其导入postgre数据库的phones表。整个程序代码采用Flask框架，使得python与Postgresql能够交互，实现登录、查找和评论的功能。同时使用javascript对部分html组件进行控制，使程序更好地运行。
 
+扩展包列举在requirements.txt
+
 js代码直接被包含在两个html文件里
 数据库URL为postgresql://postgres:zyh@localhost:5432/postgres
